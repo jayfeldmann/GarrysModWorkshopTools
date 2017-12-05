@@ -29,8 +29,9 @@ UPDATING AN EXISTING ADDON
 5. Click "Update Addon".
 6. Finalise your Workshop release inside of steam.
 
-VERSIONS
-v. 1.0
+Patchnotes:
+
+V. 1.0
 - The software is able to create a GMA file with given folders
 - GMA's can be published directly to Steam Workshop
 - Existing Workshop items can be updated
