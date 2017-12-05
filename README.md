@@ -4,7 +4,7 @@ GUI Tool for creating, publishing and updating GMA's for Garrys Mod
 NOTE:
 At this point, there are not really any error handeling mechanisms, so if you decide to use this, better use the buttons to enter your file locations (optional drag and drop on "Open addon folder Textbox") and dual check your inputs.
 
-HOW TO USE:
+HOW TO USE
 CREATING A GMA FILE
 1. Enter a name for your addon (since this will be the filename, don't use spaces)
 2. Enter the path of your uncompressed addon folder (just the folder with all your addon contents) with the "Open addon folder" button.
@@ -28,7 +28,7 @@ UPDATING AN EXISTING ADDON
 5. Click "Update Addon".
 6. Finalise your Workshop release inside of steam.
 
-VERSIONS:
+VERSIONS
 V. 1.0
 - The software is able to create a GMA file with given folders
 - GMA's can be published directly to Steam Workshop
