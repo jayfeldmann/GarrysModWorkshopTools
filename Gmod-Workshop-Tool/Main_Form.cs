@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Gmod_Workshop_Tool
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         OpenFileDialog ofd = new OpenFileDialog();
         FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -23,7 +23,7 @@ namespace Gmod_Workshop_Tool
         string gmaUpdatePath = "";
         bool root = false;
 
-        public Form1()
+        public Main_Form()
         {
             InitializeComponent();
             //Checks if gmod is installed in the standard path/sets gmod root directory

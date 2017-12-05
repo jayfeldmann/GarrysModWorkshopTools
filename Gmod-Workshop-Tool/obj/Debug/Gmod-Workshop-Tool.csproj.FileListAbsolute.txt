@@ -2,8 +2,8 @@ c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Works
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\bin\Debug\Gmod-Workshop-Tool.exe
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\bin\Debug\Gmod-Workshop-Tool.pdb
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.csprojResolveAssemblyReference.cache
-c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod_Workshop_Tool.Form1.resources
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod_Workshop_Tool.Properties.Resources.resources
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.csproj.GenerateResource.Cache
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.exe
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.pdb
+C:\Users\Jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod_Workshop_Tool.Main_Form.resources

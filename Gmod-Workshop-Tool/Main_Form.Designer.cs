@@ -1,6 +1,6 @@
 ﻿namespace Gmod_Workshop_Tool
 {
-    partial class Form1
+    partial class Main_Form
     {
         /// <summary>
         /// Erforderliche Designervariable.
