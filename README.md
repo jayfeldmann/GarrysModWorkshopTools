@@ -4,7 +4,7 @@ GUI Tool for creating, publishing and updating GMA's for Garrys Mod
 NOTE:
 At this point, there are not really any error handeling mechanisms, so if you decide to use this, better use the buttons to enter your file locations (optional drag and drop on "Open addon folder Textbox") and dual check your inputs.
 
-HOW TO USE
+How to use:
 
 CREATING A GMA FILE
 1. Enter a name for your addon (since this will be the filename, don't use spaces)
