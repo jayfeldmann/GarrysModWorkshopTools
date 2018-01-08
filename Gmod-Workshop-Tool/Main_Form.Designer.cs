@@ -219,7 +219,7 @@
             this.btn_updateIcon.UseVisualStyleBackColor = true;
             this.btn_updateIcon.Click += new System.EventHandler(this.btn_updateIcon_Click);
             // 
-            // Form1
+            // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -245,7 +245,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "Main_Form";
             this.ShowIcon = false;
             this.Text = "Gmod Tool";
             this.ResumeLayout(false);

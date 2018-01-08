@@ -1,0 +1,2 @@
+Add gmad.exe as embedded resource, so there's no need for searching gmad.exe on system
+ERROR HANDLING!!!!

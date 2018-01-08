@@ -16,33 +16,43 @@ namespace Gmod_Workshop_Tool
         OpenFileDialog ofd = new OpenFileDialog();
         FolderBrowserDialog fbd = new FolderBrowserDialog();
         SaveFileDialog sfd = new SaveFileDialog();
+        string tempExeName = Path.Combine(Directory.GetCurrentDirectory(), "A3E5.exe");
         string modPath = "";
         string gmaPath = "";
         string gmodRoot = "";
         string iconPath = "";
         string gmaUpdatePath = "";
         bool root = false;
+        
 
         public Main_Form()
         {
             InitializeComponent();
-            //Checks if gmod is installed in the standard path/sets gmod root directory
-            if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod"))
+
+            //creates temp gmad.exe file from resources to
+            using (FileStream fsDst = new FileStream(tempExeName, FileMode.CreateNew, FileAccess.Write))
             {
-                txb_rootDir.Text = @"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod";
-                gmodRoot = @"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod";
-                root = true;
-            }//Check on 32 bit systems
-            else if(Directory.Exists(@"C:\Program Files\Steam\steamapps\common\GarrysMod"))
-            {
-                txb_rootDir.Text = @"C:\Program Files\Steam\steamapps\common\GarrysMod";
-                gmodRoot = @"C:\Program Files\Steam\steamapps\common\GarrysMod";
-                root = true;
+                //TODO: Fix dis shiet
+                byte[] bytes = Resources1.GetSubExe();
+                fsDst.Write(bytes, 0, bytes.Length);
             }
-            else
-            {
-                txb_rootDir.Text = "Gmod root folder not found...";
-            }
+                //Checks if gmod is installed in the standard path/sets gmod root directory
+                if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod"))
+                {
+                    txb_rootDir.Text = @"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod";
+                    gmodRoot = @"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod";
+                    root = true;
+                }//Check on 32 bit systems
+                else if (Directory.Exists(@"C:\Program Files\Steam\steamapps\common\GarrysMod"))
+                {
+                    txb_rootDir.Text = @"C:\Program Files\Steam\steamapps\common\GarrysMod";
+                    gmodRoot = @"C:\Program Files\Steam\steamapps\common\GarrysMod";
+                    root = true;
+                }
+                else
+                {
+                    txb_rootDir.Text = "Gmod root folder not found...";
+                }
         }
         //Select path of uncompiled addon
         private void btn_openFolder_Click(object sender, EventArgs e)
