@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace Gmod_Workshop_Tool
 {
@@ -23,19 +24,13 @@ namespace Gmod_Workshop_Tool
         string iconPath = "";
         string gmaUpdatePath = "";
         bool root = false;
-        
+               
 
         public Main_Form()
         {
             InitializeComponent();
 
             //creates temp gmad.exe file from resources to
-            using (FileStream fsDst = new FileStream(tempExeName, FileMode.CreateNew, FileAccess.Write))
-            {
-                //TODO: Fix dis shiet
-                byte[] bytes = Resources1.GetSubExe();
-                fsDst.Write(bytes, 0, bytes.Length);
-            }
                 //Checks if gmod is installed in the standard path/sets gmod root directory
                 if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod"))
                 {
