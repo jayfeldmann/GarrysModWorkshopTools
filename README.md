@@ -1,8 +1,13 @@
 # Garrys Mod Workshop Tools
 GUI Tool for creating, publishing and updating GMA's for Garrys Mod
 
-NOTE:
-At this point, there are not really any error handeling mechanisms, so if you decide to use this, better use the buttons to enter your file locations (optional drag and drop on "Open addon folder Textbox") and dual check your inputs.
+REMOVING:
+The Program uses a .config file to store the last entered Garrys Mod location
+for convenience. This file is not encrypted, you can read it and if you want
+to remove the Program completely, you have to remove the correct folder from your
+appdata Folder.
+
+The config can be found in: .../AppData/Local/Gmod_Workshop_Tool/CUSTOMID/user.config
 
 How to use:
 
@@ -30,6 +35,11 @@ UPDATING AN EXISTING ADDON
 6. Finalise your Workshop release inside of steam.
 
 Patchnotes:
+
+V. 1.1
+- Added Error handling to prevent unwanted crashes.
+- Added user settings. Garrys Mod location will be saved.
+- Added Output Textbox to remove annoying Message Boxes.
 
 V. 1.0
 - The software is able to create a GMA file with given folders

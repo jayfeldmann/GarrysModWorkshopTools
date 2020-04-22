@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using Gmod_Workshop_Tool.Properties;
 
 namespace Gmod_Workshop_Tool
 {
@@ -24,31 +25,81 @@ namespace Gmod_Workshop_Tool
         string iconPath = "";
         string gmaUpdatePath = "";
         bool root = false;
+        bool hasName = false;
+
+        string[] commonGmadLocations;
                
 
         public Main_Form()
         {
             InitializeComponent();
-
+            commonGmadLocations = setCommonLocations();
             //creates temp gmad.exe file from resources to
-                //Checks if gmod is installed in the standard path/sets gmod root directory
-                if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod"))
-                {
-                    txb_rootDir.Text = @"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod";
-                    gmodRoot = @"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod";
-                    root = true;
-                }//Check on 32 bit systems
-                else if (Directory.Exists(@"C:\Program Files\Steam\steamapps\common\GarrysMod"))
-                {
-                    txb_rootDir.Text = @"C:\Program Files\Steam\steamapps\common\GarrysMod";
-                    gmodRoot = @"C:\Program Files\Steam\steamapps\common\GarrysMod";
-                    root = true;
-                }
-                else
-                {
-                    txb_rootDir.Text = "Gmod root folder not found...";
-                }
+            //Checks if gmod is installed in the standard path/sets gmod root directory
+            if (!LoadSettings())
+            {
+                WriteToOutBox("Scanning common gmod locations...");
+                CheckForCommonGmadLocations(commonGmadLocations);
+            }
+            else
+            {
+                gmodRoot = Settings.Default["GmodFolder"].ToString();
+                txb_rootDir.Text = gmodRoot;
+                root = true;
+                WriteToOutBox("Settings Loaded.");
+            }
         }
+
+        
+        private bool LoadSettings()
+        {
+            var folderPath = Settings.Default["GmodFolder"].ToString();
+            if (!ValidateGmodFolder(folderPath))
+            {
+                return false;
+            }
+            
+            if (!String.IsNullOrWhiteSpace(folderPath))
+            {
+                gmodRoot=folderPath;
+                return true;
+            }
+            return false;
+        }
+
+        private void SaveSettings(string setting, string value)
+        {
+            Settings.Default[setting] = value;
+            Settings.Default.Save();
+        }
+        //A list for common used locations for the Garrys Mod installation
+        private string[] setCommonLocations()
+        {
+            List<string> locations = new List<string>();
+
+            locations.Add(@"C:\Program Files (x86)\Steam\steamapps\common\GarrysMod");
+            locations.Add(@"C:\Program Files\Steam\steamapps\common\GarrysMod");
+
+            return locations.ToArray();
+        }
+
+        private void CheckForCommonGmadLocations(string[] locations)
+        {
+            foreach (var loc in locations)
+            {
+                if (Directory.Exists(loc))
+                {
+                    txb_rootDir.Text = loc;
+                    gmodRoot = loc;
+                    root = true;
+                    return;
+                }
+            }
+
+            txb_rootDir.Text="Gmod root folder not found...";
+            WriteToOutBox("Garrys Mod could not be found, please enter Gmod Location.");
+        }
+
         //Select path of uncompiled addon
         private void btn_openFolder_Click(object sender, EventArgs e)
         {
@@ -58,6 +109,7 @@ namespace Gmod_Workshop_Tool
                 txb_folderLocation.Text = fbd.SelectedPath;
             }
         }
+
         //Select the GMA output path
         private void btn_gmaOutLoc_Click(object sender, EventArgs e)
         {
@@ -69,28 +121,61 @@ namespace Gmod_Workshop_Tool
                 txb_updateGmaLocation.Text = gmaPath + ".gma";
             }
         }
+
         //Select the root directory of Gmod
         private void btn_rootDir_Click(object sender, EventArgs e)
         {
             if (fbd.ShowDialog() == DialogResult.OK)
             {
+                if (!ValidateGmodFolder(fbd.SelectedPath))
+                {
+                    txb_rootDir.Text = "No valid directory.";
+                    WriteToOutBox("Gmod Folder could not be Validated. \ngmad.exe could not be found.");
+                    return;
+                }
                 gmodRoot = fbd.SelectedPath;
                 txb_rootDir.Text = gmodRoot;
+                
                 root = true;
+                SaveSettings("GmodFolder", gmodRoot);
             }
         }
+
+        private bool ValidateGmodFolder(string folderPath)
+        {
+            if (File.Exists(folderPath + @"\bin\gmad.exe")) {
+                WriteToOutBox("Valid Gmod directory loaded.");
+                return true;
+            }
+            return false;
+        }
+
         //Create GMA File based on files from the directories
         private void btn_createGma_Click(object sender, EventArgs e)
         {
+            if (!hasName){
+                WriteToOutBox("It seems you haven't entered a Name for your Addon.");
+                return;
+            }
+
             if (Directory.Exists(gmodRoot)&& Directory.Exists(modPath)&& Directory.Exists(gmaPath))
             {
-                System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmad.exe", "create -folder " + modPath + " -out " + gmaPath + ".gma");
+                try
+                {
+                    System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmad.exe", "create -folder " + modPath + " -out " + gmaPath + ".gma");
+                }
+                catch (Exception ex)
+                {
+                    WriteToOutBox($"Error found during GMA creation: {ex}");
+                }
+                
             }
             else
             {
-                MessageBox.Show("Check your directories! Something seems off...");
+                WriteToOutBox("Check your directories! Something seems off...");
             }
         }
+
         //Select the Icon used for the Workshop
         private void btn_openIcon_Click(object sender, EventArgs e)
         {
@@ -102,6 +187,7 @@ namespace Gmod_Workshop_Tool
 
             }
         }
+
         //Selects the COMPILED GMA LOCATION; for upload/update purposes
         private void btn_updateGmaLocation_Click(object sender, EventArgs e)
         {
@@ -111,6 +197,7 @@ namespace Gmod_Workshop_Tool
                 txb_updateGmaLocation.Text = gmaUpdatePath;
             }
         }
+
         //Switches between upload and update mode
         //UPLOAD: uploads new addon to workshop
         //UPDATE: updates already existing addon in the workshop
@@ -127,6 +214,7 @@ namespace Gmod_Workshop_Tool
                 btn_updateAddon.Text = "Upload Addon";
             }
         }
+
         //Decides if user wants to include changenotes
         private void cbx_changeNotes_CheckedChanged(object sender, EventArgs e)
         {
@@ -139,6 +227,7 @@ namespace Gmod_Workshop_Tool
                 txb_changeNotes.Enabled = false;
             }
         }
+
         //Updates existing addon in workshop
         private void btn_updateAddon_Click(object sender, EventArgs e)
         {
@@ -146,26 +235,43 @@ namespace Gmod_Workshop_Tool
             {
                 if (cbx_update.Checked == false)
                 {
-                    System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "create -addon " + gmaUpdatePath + " -icon " + iconPath);
+                    try
+                    {
+                        System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "create -addon " + gmaUpdatePath + " -icon " + iconPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        WriteToOutBox($"Error during update: {ex}");
+                    }
+                    
                 }
                 else
                 {
-                    if (cbx_changeNotes.Checked)
+                    try
                     {
-                        System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "update -addon " + gmaUpdatePath + " -id " + txb_wsId.Text + " -changes " + txb_changeNotes.Text);
+                        if (cbx_changeNotes.Checked)
+                        {
+                            System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "update -addon " + gmaUpdatePath + " -id " + txb_wsId.Text + " -changes " + txb_changeNotes.Text);
+                        }
+                        else
+                        {
+                            System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "update -addon " + gmaUpdatePath + " -id " + txb_wsId.Text);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "update -addon " + gmaUpdatePath + " -id " + txb_wsId.Text);
+                        WriteToOutBox($"Error during update: {ex}");
+
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Please enter Gmod Root folder!");
+                WriteToOutBox("Please enter Gmod Root folder!");
             }
             
         }
+
         //updates existing addons icon
         private void btn_updateIcon_Click(object sender, EventArgs e)
         {
@@ -173,14 +279,24 @@ namespace Gmod_Workshop_Tool
             {
                 if (cbx_update.Checked)
                 {
-                    System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "update -icon " + iconPath + " -id " + txb_wsId.Text);
+                    try
+                    {
+                        System.Diagnostics.Process.Start(gmodRoot + @"\bin\gmpublish.exe", "update -icon " + iconPath + " -id " + txb_wsId.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        WriteToOutBox($"Error during update: {ex}");
+
+                    }
+                    
                 }
             }
             else
             {
-                MessageBox.Show("Please enter Gmod Root folder!");
+                WriteToOutBox("Please enter Gmod Root folder!");
             }
         }
+
         //Drag and Drop Open Folder Location
         private void txb_folderLocation_DragEnter(object sender, DragEventArgs e)
         {
@@ -189,10 +305,22 @@ namespace Gmod_Workshop_Tool
 
         private void txb_folderLocation_DragDrop(object sender, DragEventArgs e)
         {
-           string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string file in files)
+            {
                 modPath = file;
                 txb_folderLocation.Text = modPath;
+            }
+        }
+
+        private void txb_AddonName_TextChanged(object sender, EventArgs e)
+        {
+            hasName = true;
+        }
+
+        private void WriteToOutBox(string s)
+        {
+            outTextBox.AppendText(s+"\n");
         }
     }
 }

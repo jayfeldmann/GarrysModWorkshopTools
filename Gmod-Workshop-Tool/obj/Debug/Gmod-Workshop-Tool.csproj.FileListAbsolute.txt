@@ -7,3 +7,13 @@ c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Works
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.exe
 c:\users\jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.pdb
 C:\Users\Jay\documents\visual studio 2017\Projects\Gmod-Workshop-Tool\Gmod-Workshop-Tool\obj\Debug\Gmod_Workshop_Tool.Main_Form.resources
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\bin\Debug\Gmod-Workshop-Tool.exe.config
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\bin\Debug\Gmod-Workshop-Tool.exe
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\bin\Debug\Gmod-Workshop-Tool.pdb
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.csprojAssemblyReference.cache
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\obj\Debug\Gmod_Workshop_Tool.Main_Form.resources
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\obj\Debug\Gmod_Workshop_Tool.Properties.Resources.resources
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.csproj.GenerateResource.cache
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.csproj.CoreCompileInputs.cache
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.exe
+C:\Users\cryin\Documents\GitHub\GarrysModWorkshopTools\Gmod-Workshop-Tool\obj\Debug\Gmod-Workshop-Tool.pdb
