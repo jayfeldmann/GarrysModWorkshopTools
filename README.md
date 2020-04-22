@@ -1,5 +1,7 @@
 # Garrys Mod Workshop Tools
 GUI Tool for creating, publishing and updating GMA's for Garrys Mod
+DOWNLOAD:
+https://github.com/jayfeldmann/GarrysModWorkshopTools/releases
 
 REMOVING:
 The Program uses a .config file to store the last entered Garrys Mod location
