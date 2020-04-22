@@ -43,6 +43,7 @@ V. 1.1
 - Added Error handling to prevent unwanted crashes.
 - Added user settings. Garrys Mod location will be saved.
 - Added Output Textbox to remove annoying Message Boxes.
+- Misc quality of live improvements.
 
 V. 1.0
 - The software is able to create a GMA file with given folders
