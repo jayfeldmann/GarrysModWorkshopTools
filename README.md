@@ -1,13 +1,16 @@
 # Garrys Mod Workshop Tools
 GUI Tool for creating, publishing and updating GMA's for Garrys Mod
 
+DOWNLOAD:
+https://github.com/jayfeldmann/GarrysModWorkshopTools/releases
+
 REMOVING:
 The Program uses a .config file to store the last entered Garrys Mod location
 for convenience. This file is not encrypted, you can read it and if you want
 to remove the Program completely, you have to remove the correct folder from your
 appdata Folder.
 
-The config can be found in: .../AppData/Local/Gmod_Workshop_Tool/CUSTOMID/user.config
+The config can be found in: .../AppData/Local/Gmod_Workshop_Tool/CUSTOMID/1.0.0.0/user.config
 
 How to use:
 
@@ -40,6 +43,7 @@ V. 1.1
 - Added Error handling to prevent unwanted crashes.
 - Added user settings. Garrys Mod location will be saved.
 - Added Output Textbox to remove annoying Message Boxes.
+- Misc quality of live improvements.
 
 V. 1.0
 - The software is able to create a GMA file with given folders
