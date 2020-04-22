@@ -10,7 +10,7 @@ for convenience. This file is not encrypted, you can read it and if you want
 to remove the Program completely, you have to remove the correct folder from your
 appdata Folder.
 
-The config can be found in: .../AppData/Local/Gmod_Workshop_Tool/CUSTOMID/user.config
+The config can be found in: .../AppData/Local/Gmod_Workshop_Tool/CUSTOMID/1.0.0.0/user.config
 
 How to use:
 
